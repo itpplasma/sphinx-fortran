@@ -344,7 +344,8 @@ class F90toRst(object):
                     for line in modsrc:
                         if line.strip().startswith('!'):
                             continue
-                        m = block['vardescsearch'](line)
+                        if 'vardescsearch' in block.keys():
+                            m = block['vardescsearch'](line)
                         if m:
                             block['vars'][m.group('varname').lower()]['desc'] = m.group(
                                 'vardesc')
